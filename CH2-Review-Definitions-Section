@@ -156,3 +156,40 @@
 			System.out.printf("Product is %d\n", result);
 		}
 	}
+	
+2.7 Fill in the blanks in each of the following statements:
+	a) ____ are used to document a program and improve its readability.
+		= comments	
+	b) A decision can be made in a Java program with a(n) ____ .
+		= if statement
+	c) Calculations are normally performed by ____ statements.
+		= assignment
+	d) The arithmetic operators with the same precedence as multiplication are ____ and ____.
+		= division, modulus/remainder
+	e) When parentheses in an arithmetic expression are nested, the ____ set of parentheses is evaluated first.
+		= innermost
+	f) A location in the computer’s memory that may contain different values at various times throughout the execution of a program is called a(n) ____  .
+		= variable
+	
+2.8 Write Java statements that accomplish each of the following tasks:
+	a) Display the message "Enter an integer: ", leaving the cursor on the same line.
+		
+		System.out.print("Enter an integer: ");
+	
+	b) Assign the product of variables b and c to variable a.
+	
+		a = b * c;
+		
+	c) Use a comment to state that a program performs a sample payroll calculation.
+	
+		//program performs a sample payroll calculation
+	
+2.9 State whether each of the following is true or false. If false, explain why.
+	a) Java operators are evaluated from left to right.
+		false. Not true for all operators. Also order of precedence.
+	b) The following are all valid variable names: _under_bar_, m928134, t5, j7, her_sales$, his_$account_total, a, b$, c, z and z2.
+		true. Underscores and dollar signs are acceptable.
+	c) A valid Java arithmetic expression with no parentheses is evaluated from left to right.
+		false. Order of precedence.
+	d) The following are all invalid variable names: 3g, 87, 67h2, h22 and 2h.
+		false. all are invalid except for h22.
