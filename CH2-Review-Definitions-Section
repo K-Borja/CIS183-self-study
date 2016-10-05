@@ -1,0 +1,158 @@
+//CHAPTER 2 SELF STUDY ANSWERS
+//REVIEW/DEFINITIONS SECTION
+
+2.1 Fill in the blanks in each of the following statements:
+	a) A(n) _____ begins the body of every method, and a(n) _____ ends the body of every method.
+		= Left Bracket, Right Bracket 
+	b) The _____ statement is used to make decisions.
+		= if
+	c) _____ begins an end-of-line comment.
+		= //
+	d) _____, _____ and _____ are called white space.
+		= new line, space character, tab
+	e) _____ are reserved for use by Java.
+		= keyword
+	f) Java applications begin execution at method _____ .
+		= main
+	g) Methods _____, _____ and _____ display information in a command window.
+		= System.out.print(), System.out.println(), System.out.printf()
+	
+2.2 State whether each of the following is true or false. If false, explain why.
+	a) Comments cause the computer to print the text after the // on the screen when the program executes.
+		= false. Comments are for documentation and program's readability
+	b) All variables must be given a type when they’re declared.
+		= true. 
+	c) Java considers the variables number and NuMbEr to be identical.
+		= false. Java is case sensitive.
+	d) The remainder operator (%) can be used only with integer operands.
+		= false. The remainder can also be used for non integers.
+	e) The arithmetic operators *, /, %, + and - all have the same level of precedence.
+		= false. *, /, % have higher precedence than +,-.
+	
+2.3 Write statements to accomplish each of the following tasks:
+	a) Declare variables c, thisIsAVariable, q76354 and number to be of type int.
+		
+		int c;
+		int thisIsAVariable;
+		int q78354;
+		int number;		
+		
+	b) Prompt the user to enter an integer.
+		
+		System.out.print("Enter an integer: ");
+	
+	c) Input an integer and assign the result to int variable value. Assume Scanner variable input can be used to read a value from the keyboard.
+	
+		Assume: Scanner input = new Scanner(System.in);
+				System.out.print("Enter an integer: ");
+				
+		int value = input.nextInt();
+	
+	d) Print "This is a Java program" on one line in the command window. Use method System.out.println.
+	
+		System.out.println("This is a Java program");
+	
+	e) Print "This is a Java program" on two lines in the command window. The first line should end with Java. Use method System.out.println.
+	
+		System.out.println("This is a Java\nprogram");
+	
+	f) Print "This is a Java program" on two lines in the command window. The first line should end with Java. Use method System.out.printf and two %s format specifiers.
+	
+		System.out.printf("%s\n%s\n", "This is a Java", "program");
+	
+	g) If the variable number is not equal to 7, display "The variable number is not equal to 7".
+	
+		if(number != 7)
+			System.out.println("The variable number is not equal to 7.");
+
+2.4 Identify and correct the errors in each of the following statements:
+	a) if ( c < 7 );
+		System.out.println( "c is less than 7" );
+		
+		== remove first semicolon
+		== if( c < 7 )
+		
+	b) if ( c => 7 )
+		System.out.println( "c is equal to or greater than 7" );
+
+		== > should come before =
+		== if ( c >= 7 )
+		
+2.5 Write declarations, statements or comments that accomplish each of the following tasks:
+	a) State that a program will calculate the product of three integers.
+	
+		//program will calculate product of three integers
+	
+	b) Create a Scanner called input that reads values from the standard input.
+		
+		Scanner input = new Scanner(System.in);
+		
+	c) Declare the variables x, y, z and result to be of type int.
+		
+		int x;
+		int y;
+		int z;
+		int result;
+		
+	d) Prompt the user to enter the first integer.
+		
+		System.out.print("Enter the first integer: ");
+		
+	e) Read the first integer from the user and store it in the variable x.
+		
+		x = input.nextInt();
+		
+	f) Prompt the user to enter the second integer.
+		
+		System.out.print("Enter the second integer: ");
+		
+	g) Read the second integer from the user and store it in the variable y.
+		
+		y = input.nextInt();
+		
+	h) Prompt the user to enter the third integer.
+		
+		System.out.print("Enter the third integer: ");
+		
+	i) Read the third integer from the user and store it in the variable z.
+		
+		z = input.nextInt();
+		
+	j) Compute the product of the three integers contained in variables x, y and z, and assign the result to the variable result.
+		
+		result = x * y * z;
+		
+	k) Display the message "Product is" followed by the value of the variable result.
+		
+		System.out.printf("Product is %d\n", result);
+		
+
+2.6 Using the statements you wrote in Exercise 2.5, write a complete program that calculates and prints the product of three integers.
+
+	//program will calculate product of three integers
+	import java.util.Scanner;
+	
+	public class ch2ex2p6
+	{
+		public static void main(String[] args)
+		{
+			Scanner input = new Scanner(System.in);
+			
+			int x;
+			int y;
+			int z;
+			int result;
+			
+			System.out.print("Enter the first integer: ");
+			x = input.nextInt();
+			
+			System.out.print("Enter the second integer: ");
+			y = input.nextInt();
+			
+			System.out.print("Enter the third integer: ");
+			z = input.nextInt();
+			
+			result = x * y * z;
+			System.out.printf("Product is %d\n", result);
+		}
+	}
