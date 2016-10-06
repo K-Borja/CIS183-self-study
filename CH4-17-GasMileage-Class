@@ -1,85 +1,126 @@
-/*4.17 (Gas Mileage) Drivers are concerned with the mileage their automobiles get. One driver has
-kept track of several trips by recording the miles driven and gallons used for each tankful. Develop
-a Java application that will input the miles driven and gallons used (both as integers) for each trip.
-The program should calculate and display the miles per gallon obtained for each trip and print the
-combined miles per gallon obtained for all trips up to this point. All averaging calculations should
-produce floating-point results. Use class Scanner and sentinel-controlled repetition to obtain the
-data from the user.*/
-
-public class Trip
+import java.util.Scanner;
+public class TripData
 {
-  private int miles;
-  private int gallons;
-  private int numOfTrips;
-  private double milesPerGallon;
-  private double total = 0;
-  private double average = 0;
-  
-  //constructor
-  public Trip()
-  {
-  }
-  
-  public Trip(int milesDriven, int gallonsUsed)
-  {
-    miles = milesDriven;
-    gallons = gallonsUsed;
-  }
-  
-  //set method
-  public void setMiles(int milesDriven)
-  {
-      //set by user input
-      miles = milesDriven;
-  }
-  public void setGallons(int gallonsUsed)
-  {
-      //set by user input
-      gallons = gallonsDriven;
-  }
-  public void setNumberOfTrips(int numberOfTrips)
-  {
-      //set by a counter, passed to this method.
-      numOfTrips = numberOfTrips;
-  }
-  
-  //get methods
-  public int getMiles()
-  {
-      return miles;
-  }
-  public int getGallons()
-  {
-      return gallons;
-  }
-  public int getNumOfTrips()
-  {
-      return numOfTrips;
-  }
-  
-  public double milesPerGallonEachTrip()
-  {
-      milesPerGallon = miles / gallons;
-      System.out.printf("\n\nFor this trip:\nMiles driven: %d\nGallons used: %d\nMiles Per Gallon:%d\n\n",getMiles(),getGallons(),milesPerGallon);
-      return milesPerGallon;
-  }
-  
-  public double totalMilesPerGallon()
-  {
-     total += milesPerGallon;
-     return total;
-  }
-  
-  public double averageMilesPerGallon()
-  {
-      average = total/numOfTrips;
-      return average;
-  }
-  
-  public void displayMessage()
-  {
-      System.out.printf("Total miles per gallon: %d\n", total);
-      System.out.printf("Total number of trips: %d\n", getNumOfTrips());
-      System.out.printf("Average miles per gallon: %d\n", average);
-  }  
+    private int miles;
+    private int gallons;
+    private double milesPerGallon = 0;
+    private double totalMPG = 0;
+    private int numberOfTrips = 0;
+    private double average;
+    
+    public TripData()
+    {
+        //empty constructor
+    }
+    /*public TripData(int milesDriven, int gallonsUsed)
+    {
+        miles = milesDriven;
+        gallons = gallonsUsed;
+    }*/
+    
+    public void setMiles(int milesDriven)
+    {
+        miles = milesDriven;
+    }
+    public void setGallons(int gallonsUsed)
+    {
+        gallons = gallonsUsed;
+    }
+    
+    public void collectData()
+    {
+        int mileInput = 0;
+        int gallonInput = 0;
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("\n---Input trip data---");
+        System.out.println("Enter '-1' to end input. ");
+        System.out.print("Enter any integer to continue: ");
+        int sentinel = input.nextInt();
+        
+        while(sentinel != -1)
+        {
+            System.out.print("Enter miles driven: ");
+            mileInput = input.nextInt();
+            setMiles(mileInput);
+            
+            if(mileInput>=0)
+            {
+                System.out.print("Enter gallons used: ");
+                gallonInput = input.nextInt();
+                setGallons(gallonInput);
+
+                if(gallonInput>=0)
+                {
+                    //if((mileInput>0) || (gallonInput>0))
+                    calculateTrip();
+                    displayThisTrip();
+                }
+                else
+                {
+                    System.out.print("\nInvalid input. Enter a positive number for gallons used: ");
+                    gallonInput = input.nextInt();
+                    setGallons(gallonInput);
+                }
+            }
+            else
+            {
+                System.out.print("\nInvalid input. Enter a positive number for miles driven: ");
+                mileInput = input.nextInt();
+                setMiles(mileInput);
+            }
+            
+            System.out.println("\n---Input trip data---");
+            System.out.println("Enter '-1' to end input. ");
+            System.out.print("Enter any integer to continue: ");
+            sentinel = input.nextInt();
+        }//end while
+        
+        calculateAverage();
+        displayTotal();
+    }
+    
+    public void calculateTrip()
+    {
+        milesPerGallon = (double)miles / gallons;
+        ++numberOfTrips;
+        totalMPG += milesPerGallon;
+        
+        /*setTotalMPG(milesPerGallon);
+        setNumOfTrips(1);*/
+    }
+    
+    /*public int setNumOfTrips(int count)
+    {
+        numberOfTrips += count;
+        return numberOfTrips;
+    }
+    public double setTotalMPG(double MPG)
+    {
+        totalMPG += MPG;
+        return totalMPG;
+    }*/
+    
+    public void displayThisTrip()
+    {
+        System.out.println("\n---Data for this trip---");
+        System.out.printf("Miles: %d\n", miles);
+        System.out.printf("Gallons: %d\n", gallons);
+        System.out.printf("Miles Per Gallon: %.2f\n\n", milesPerGallon);
+    }
+    
+    public double calculateAverage()
+    {
+        average = totalMPG/numberOfTrips;
+        return average;
+    }
+    
+    public void displayTotal()
+    {
+        System.out.println("\n\n---Accumulative Data---");
+        System.out.printf("Total Number Of Trips: %d\n", numberOfTrips);
+        System.out.printf("Total Miles Per Gallon: %.2f\n", totalMPG);
+        System.out.printf("Average Miles Per Gallon: %.2f\n", average);
+    }
 }
