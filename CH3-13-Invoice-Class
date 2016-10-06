@@ -1,0 +1,72 @@
+/* 3.13 (Invoice Class) Create a class called Invoice that a hardware store might use to represent an invoice for an item sold at the store. An Invoice should include four pieces of information as instance variables—a part number (type String), a part description (type String), a quantity of the item being purchased (type int) and a price per item (double). Your class should have a constructor that initializes the four instance variables. Provide a set and a get method for each instance variable. */
+
+public class Invoice
+{
+	private String partNumber;
+	private String ptDescribe;
+	private int quantity;
+	private double price;
+	
+	//constructor
+	public Invoice()
+	{
+		//empty constructor required for object
+	}
+	
+	//constructor
+	public Invoice(String ptNum, String describe, int numPurchased, double pricePerItem)
+	{
+		partNumber = ptNum;
+		ptDescribe = describe;
+		quantity = numPurchased;
+		price = pricePerItem;
+	}
+	
+	//set method for each instance variable
+	public void setPartNumber(String ptNum)
+	{
+		partNumber = ptNum;
+	}
+	public void setPtDescribe(String describe)
+	{
+		ptDescribe = describe;
+	}
+	public void setQuantity(int numPurchased)
+	{
+		quantity = numPurchased;
+	}
+	public void setPrice(double pricePerItem)
+	{
+		price = pricePerItem;
+	}
+	//get method for each instance variable
+	public String getPartNumber()
+	{
+		return partNumber;
+	}
+	public String getPtDescribe()
+	{
+		return ptDescribe;
+	}
+	public int getQuantity()
+	{
+		return quantity;
+	}
+	public double getPrice()
+	{
+		return price;
+	}
+	
+	/*In addition, provide a method named getInvoiceAmount that calculates the invoice amount (i.e., multiplies the quantity by the price per item), then returns the amount as a double value. If the quantity is not positive, it should be set to 0. If the price per item is not positive, it should be set to 0.0. Write a test application named InvoiceTest that demonstrates class Invoice’s capabilities. */
+	
+	public double getInvoiceAmount()
+	{
+		
+		if(quantity < 0)
+			quantity = 0;
+		if(price < 0)
+			price = 0.0;
+		double invoiceAmount = quantity * price;
+		return invoiceAmount;
+	}
+}
