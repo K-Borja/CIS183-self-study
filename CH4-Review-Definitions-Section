@@ -1,0 +1,218 @@
+4.1 Fill in the blanks in each of the following statements:
+	a) All programs can be written in terms of three types of control structures: ______, ______ and ______.
+		= sequence, selection, repetition
+	b) The ______ statement is used to execute one action when a condition is true and another when that condition is false.
+		= if-else
+	c) Repeating a set of instructions a specific number of times is called ______ repetition.
+		=  counter-controlled
+	d) When it’s not known in advance how many times a set of statements will be repeated, a(n) ______ value can be used to terminate the repetition.
+		= sentitel
+	e) The ______ structure is built into Java; by default, statements execute in the order they appear.
+		= sequence
+	f) Instance variables of types char, byte, short, int, long, float and double are all given the value ______ by default.
+		= 0
+	g) Java is a(n) ______ language; it requires all variables to have a type.
+		= strongly typed
+	h) If the increment operator is ______ to a variable, first the variable is incremented by 1, then its new value is used in the expression.
+		= prefixed
+	
+4.2 State whether each of the following is true or false. If false, explain why.
+	a) An algorithm is a procedure for solving a problem in terms of the actions to execute and the order in which they execute.
+		= TRUE
+	b) A set of statements contained within a pair of parentheses is called a block.
+		= false. Braces, not parentheses, is a block.
+	c) A selection statement specifies that an action is to be repeated while some condition remains true.
+		= False. That is a repetition statement.
+	d) A nested control statement appears in the body of another control statement. 
+		= true
+	e) Java provides the arithmetic compound assignment operators +=, -=, *=, /= and %= for abbreviating assignment expressions.
+		= true
+	f) The primitive types (boolean, char, byte, short, int, long, float and double) are portable across only Windows platforms.
+		= false. portable across all computer platforms that support java.
+	g) Specifying the order in which statements execute in a program is called program control. 
+		= true
+	h) The unary cast operator (double) creates a temporary integer copy of its operand.
+		= false. a cast operator double creates a temporary floating point copy
+	i) Instance variables of type boolean are given the value true by default.
+		= false. Instance variables by default are FALSE
+	j) Pseudocode helps you think out a program before attempting to write it in a programming language.
+		= true
+
+4.3 Write four different Java statements that each add 1 to integer variable x.
+	int x 
+		x = x+1;
+		x = x++;
+		x = ++x;
+		x += x;
+
+4.4 Write Java statements to accomplish each of the following tasks:
+	a) Use one statement to assign the sum of x and y to z, then increment x by 1.
+		
+		int z = x++ +y;
+	
+	b) Test whether variable count is greater than 10. If it is, print "Count is greater than 10".
+		
+		if(count > 10)
+			System.out.println("Count is greater than 10.");
+		
+	c) Use one statement to decrement the variable x by 1, then subtract it from variable total and store the result in variable total.
+		
+		total -= --x ;
+		
+	d) Calculate the remainder after q is divided by divisor, and assign the result to q. Write this statement in two different ways.
+		
+		q %= divisor;
+		q = q % divisor;
+		
+4.5 Write a Java statement to accomplish each of the following tasks:
+	a) Declare variables sum and x to be of type int.
+	
+		int sum;
+		int x;
+	
+	b) Assign 1 to variable x.
+		
+		x = 1;
+		
+	c) Assign 0 to variable sum.
+		
+		sum = 0;
+		
+	d) Add variable x to variable sum, and assign the result to variable sum.
+		
+		sum += x;
+		
+	e) Print "The sum is: ", followed by the value of variable sum.
+		
+		System.out.printf("The sum is: %d", sum);
+
+4.6 Combine the statements that you wrote in Exercise 4.5 into a Java application that calculates and prints the sum of the integers from 1 to 10. Use a while statement to loop through the calculation and increment statements. The loop should terminate when the value of x becomes 11.
+	
+	public class ex4p6
+	{
+		public static void main(String[] args)
+		{
+			int sum;
+			int x;
+			
+			x=1;
+			sum = 0;
+			while(x != 11)
+				sum+= x;
+			System.out.printf("The sum is: %d", sum);
+		}
+	}
+
+4.7 Determine the value of the variables in the statement product *= x++; after the calculation is performed. Assume that all variables are type int and initially have the value 5.
+		
+		int x = 5;
+		int product = 5;
+		product *= x++;
+		product = 5 *(5)
+		product = 25, x = 6
+		
+4.8 Identify and correct the errors in each of the following sets of code:
+	a) while ( c <= 5 )
+	{
+		product *= c;
+		++c;
+		
+    //answer:
+		//needs to have a right bracket to signal end of while to compiler:
+	}
+  
+	b) if ( gender == 1 )
+		System.out.println( "Woman" );
+	else;
+		System.out.println( "Man" );
+		
+    //answer:
+		//remove semicolon from else such that
+    else
+      System.out.println("Man");
+		
+4.9 What is wrong with the following while statement?
+	while ( z >= 0 )
+		sum += z;
+		
+    //answer:
+		//infinite loop. should decrement z to have z-- or --z
+    sum -=z;
+    
+4.10 Compare and contrast the if single-selection statement and the while repetition statement. How are these two statements similar? How are they different?
+	= how they are similar: both execute based the condition that is either true or false.
+	= how they are different:
+		when the condition is true, the if single-selection statement executes once.
+		when the condition is true, the while repetition statement executes repeatedy until the condition becomes false.
+			
+4.11 Explain what happens when a Java program attempts to divide one integer by another. What happens to the fractional part of the calculation? How can you avoid that outcome?
+	= integer division. the fraction/decimal is truncated rather than rounded.
+	= how to avoid:
+		= (explicit promotion) use unary cast operator (double) to any variable in the calculation. then result can be assigned to a double variable.
+		= (implicit promotion) double result = int/double
+
+4.12 Describe the two ways in which control statements can be combined.
+	= Stacking
+		= attach control statements by attaching the exit point of one to the next entry point
+	= Nested
+		= place a control statement inside another.
+		
+4.13 Briefly describe how each of these tasks could be performed. What type of repetition would be appropriate for calculating the sum of the first 100 positive integers?
+	= Counter-controlled repetition would be appropriate because the number of repetitions is known in advance.
+	= Use a while repetition statement with a counter variable that takes on the values 1 to 100. Add the current counter value to the total variable in each repetition of the loop
+	
+What type would be appropriate for calculating the sum of an arbitrary number of positive integers? 
+	=  Sentinel-controlled repetition would be appropriate
+	= Use a sentinel value of –1 to mark the end of data entry. Use a while repetition statement that totals positive integers from the user until the user enters the sentinel value.
+
+4.14 What is the difference between preincrementing and postincrementing a variable?
+	= Preincrementing a variable causes it to be incremented by 1, and then the new value of the variable is used in the expression in which it appears
+	=  Postincrementing a variable causes the current value of the variable to be used in the expression in which it appears, and then the variable’s value is incremented by 1
+
+4.15 Identify and correct the errors in each of the following pieces of code. [Note: There may be
+more than one error in each piece of code.]
+	a) if ( age >= 65 );
+		System.out.println( "Age is greater than or equal to 65" );
+	else
+		System.out.println( "Age is less than 65 )";
+	
+	//answer:
+	//remove first semicolon, move the quotation mark inside parenthesis. should be:
+	if ( age >= 65 )
+		System.out.println( "Age is greater than or equal to 65" );
+	else
+		System.out.println( "Age is less than 65");
+	
+	b) int x = 1, total;
+		while ( x <= 10 )
+		{
+			total += x;
+			++x;
+		}
+	
+	//answer:
+	//variable total should be initialized to 0. such that:
+	int total = 0;
+	
+	c) while ( x <= 100 )
+		total += x;
+		++x;
+	
+	//needs brackets to contain the two statements. should be:
+	while( x <= 100 )
+	{
+		total+=x;
+		++x;
+	}
+	
+	d) while ( y> 0 )
+	{
+		System.out.println( y );
+		++y;
+		
+	//infinite loop. y should have a -- operator instead. needs a closing bracket. should be:
+	while(y>0)
+	{
+		System.out.println( y );
+		--y;
+	}
