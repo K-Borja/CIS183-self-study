@@ -1,0 +1,39 @@
+
+import java.util.Scanner;
+public class InvoiceTest
+{
+	public static void main(String[] args)
+	{
+		/*Test
+		Invoice storeInvoice = new Invoice("#45A", "blue", 3, 25.99 );
+		System.out.printf("total: %.2f",storeInvoice.getInvoiceAmount());*/
+		Scanner input = new Scanner(System.in);
+		
+		//to be able to use methods from another class
+		Invoice storeInvoice = new Invoice();
+		
+		System.out.print("Enter part number: ");
+		String ptNum = input.nextLine();
+		storeInvoice.setPartNumber(ptNum);
+		
+		System.out.print("Enter part description: ");
+		String ptDescribe = input.nextLine();
+		storeInvoice.setPtDescribe(ptDescribe);
+		
+		System.out.print("Enter quantity of item purchased: ");
+		int quantity = input.nextInt();
+		storeInvoice.setQuantity(quantity);
+		
+		System.out.print("Enter price per item: ");
+		double price =input.nextDouble();
+		storeInvoice.setPrice(price);
+		
+		System.out.printf("Part Number: %s\n", storeInvoice.getPartNumber());
+		System.out.printf("Part Description: %s\n", storeInvoice.getPtDescribe());
+		System.out.printf("Quantity: %d\n", storeInvoice.getQuantity());
+		System.out.printf("Price Per Item: %.2f\n", storeInvoice.getPrice());
+		System.out.printf("Total: %.2f",storeInvoice.getInvoiceAmount());
+	}
+	
+
+}
