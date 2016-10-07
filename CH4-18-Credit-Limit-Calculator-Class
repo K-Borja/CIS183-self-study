@@ -1,0 +1,96 @@
+//chapter 4 self study exercise 18
+public class Customer
+{
+	private int acctNum;
+	private int balBegin;
+	private int charge;
+	private int credit;
+	private int credLimit;
+	private int balNew;
+	//empty constructor
+	public Customer()
+	{
+	}
+
+	//constructor
+	public Customer(int accountNumber, int beginningBal , int itemCharge , int creditsApplied, int creditsAllowed)
+	{
+		acctNum = accountNumber;
+		balBegin = beginningBal;
+		charge = itemCharge;
+		credit = creditsApplied;
+		credLimit = creditsAllowed;
+	}
+	
+	//set&get methods
+	public void setAcctNum(int accountNumber)
+	{
+		acctNum = accountNumber;
+	}
+	public int getAcctNum()
+	{
+		return acctNum;
+	}
+	
+	public void setBalBegin(int beginningBal)
+	{
+		balBegin = beginningBal;
+	}
+	public int getBalBegin()
+	{
+		return balBegin;
+	}
+	
+	public void setCharge(int itemCharge)
+	{
+		charge = itemCharge;
+	}
+	public int getCharge()
+	{
+		return charge;
+	}
+	
+	public void setCredit(int creditsApplied)
+	{
+		credit = creditsApplied;
+	}
+	public int getCredit()
+	{
+		return credit;
+	}
+	
+	public void setCredLimit(int creditsAllowed)
+	{
+		credLimit = creditsAllowed;
+	}
+	public int getCredLimit()
+	{
+		return credLimit;
+	}
+	//end of set&get methods
+	
+	public int balNew()
+	{
+		balNew = balBegin + charge - credit;
+		return balNew;
+	}
+	
+	public void displayData()
+	{
+		System.out.printf("\nThis month's data for account number: %d\n", getAcctNum());
+		System.out.printf("Balance at the beginning: %d\n", getBalBegin());
+		System.out.printf("Total of all items charged: %d\n", getCharge());
+		System.out.printf("Total of all credits applied: %d\n", getCredit());
+		System.out.printf("Allowed credit limit: %d\n", getCredLimit());
+		System.out.printf("Beginning balance: %d\n\n", balNew());
+	}
+	public void displayMessage()
+	{
+		displayData();
+		if(balNew > getCredLimit())
+			System.out.println("Credit limit exceeded.");
+		else
+			System.out.println("Ok.");
+	}
+
+}
