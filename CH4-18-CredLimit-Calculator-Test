@@ -1,0 +1,52 @@
+//chapter 4 self study exercise 18
+import java.util.Scanner;
+public class CustomerTest
+{
+	private static Scanner kb = new Scanner(System.in);
+	private static Customer data = new Customer();
+	
+	public static void main(String[] args)
+	{	
+		System.out.print("Welcome!\nEnter any number to continue, 0 to quit: ");
+		int sentinel = kb.nextInt();
+		
+		while(sentinel != 0)
+		{
+			collectData();
+			data.displayMessage();			
+			
+			System.out.print("\nWelcome!\nEnter any number to continue, 0 to quit: ");
+			sentinel = kb.nextInt();		
+				
+		}
+	}
+	
+	public static void collectData()
+	{
+			int acctNum;
+			int bal;
+			int charge;
+			int credApplied;
+			int credLimit;
+		
+			System.out.print("Enter account number: ");
+			acctNum = kb.nextInt();
+			data.setAcctNum(acctNum);
+			
+			System.out.print("Enter beginning month balance: ");
+			bal = kb.nextInt();
+			data.setBalBegin(bal);
+			
+			System.out.print("Enter total items charged this month: ");
+			charge = kb.nextInt();
+			data.setCharge(charge);
+			
+			System.out.print("Enter total credits applied this month: ");
+			credApplied =  kb.nextInt();
+			data.setCredit(credApplied);
+			
+			System.out.print("Enter allowed limit: ");
+			credLimit = kb.nextInt();
+			data.setCredLimit(credLimit);
+	}
+}
