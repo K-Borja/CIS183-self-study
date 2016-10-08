@@ -1,0 +1,202 @@
+5.1(Fill in the Blanks)
+Fill in the blanks in each of the following statements:
+a) Typically, _____ statements are used for counter-controlled repetition and
+ _____ statements for sentinel-controlled repetition.
+ = for, while
+
+b) The do...while statement tests the loop-continuation condition  _____ 
+executing the loop’s body; therefore, the body always executes at least once.
+= after
+
+c) The _____ statement selects among multiple actions based on the possible values
+of an integer variable or expression.
+= switch
+
+d) The _____ statement, when executed in a repetition statement, skips the remaining
+statements in the loop body and proceeds with the next iteration of the loop.
+= continue
+
+e) The _____ operator can be used to ensure that two conditions are both true before
+choosing a certain path of execution.
+= && (AND)
+
+f) If the loop-continuation condition in a for header is initially _____ ,the program
+does not execute the for statement’s body.
+= false
+
+g) Methods that perform common tasks and do not require objects are called _____ methods.
+= static
+
+5.2(True/False Questions)
+State whether each of the following is true or false. If false, explain why.
+a) The default case is required in the switch selection statement.
+= false. default is optional.
+
+b) The break statement is required in the last case of a switch selection statement.
+= false. break is for exiting the switch statement.
+
+c)  The expression ((x > y) && (a < b)) is true if either x>y is true or a<b is true.
+= false. can't be either, has to be both true.
+
+d) An expression containing the || operator is true if either or both of its operands are true.
+= true
+
+e)  The comma (,) formatting flag in a format specifier (e.g., %,20.2f ) indicates that
+a value should be output with a thousands separator. 
+= TRUE
+
+f)  To test for a range of values in a switch statement, use a hyphen (–) betweenthestart
+and end values of the range in a case label.
+= false. switch cant test range of values. every value to be tested should be in a separate case.
+
+g) Listing cases consecutively with no statements between them enables the cases to
+perform the same set of statements.
+= true
+
+5.3 (Write a Statement)
+Write a Java statement or a set of Java statements to accomplish each of the following tasks:
+a) Sum the odd integers between 1 and 99, using a for statement. Assume that the integer
+variables sum and count have been declared.
+
+	for(int count = 1; count <= 99; count+= 2)
+		sum += count;
+
+b) Calculate the value of 2.5 raised to the power of 3, using the pow method.
+
+	double result = math.pow(2.5,3);
+
+c)  Print the integers from 1 to 20, using a while loop and the counter variable i. Assume
+that the variable i has been declared, but not initialized. Print only five integers per line.
+[Hint: Use the calculation i%5. When the value of this expression is 0, print a newline
+character; otherwise, print a tab character. Assume that this code is an application. Use
+the System.out.println() method to output the newline character, and use the System.out.print( '\t' )
+method to output the tab character.]
+
+	i = 1;
+	while(i <= 20)
+	{
+		System.out.print(i);
+		if(i%5 == 0)
+			System.out.println();
+		else
+			System.out.print("\t");
+		++i;
+	}
+
+d) Repeat part (c), using a for statement.
+
+	for(int i = 1; i <= 20; ++i)
+	{
+		System.out.print(i);
+		if(i%5 == 0)
+			System.out.println();
+		else
+			System.out.print("\t");
+	}
+	
+5.4
+(Find the Error)
+Find the error in each of the following code segments, and explain how to correct it:
+a) //remove line2's semicolon. add left bracket in while.
+
+	i=1;
+	while(i<=10);
+		++i;
+	}
+	
+b) //floating point counters do not always work. use an int counter instead.
+
+	for(k=0.1;k!=1.0;k+=0.1)
+		System.out.println( k );
+		
+c) //case1 needs to have a break after the output.
+	switch(n)
+	{
+		case 1:
+			System.out.println("The number is 1");
+		case 2:
+			System.out.println("The number is 2");
+			break;
+		default:
+			System.out.println("The number is not 1 or 2");
+			break;
+	}
+d) //should be n<=10 to include 10.
+	The following code should print the values 1 to 10:
+	n=1;
+	while(n<10)
+		System.out.println( n++ );
+
+5.5 Describe the four basic elements of counter-controlled repetition.
+	= Counter-controlled repetition requires a control variable (or loop counter),
+	= an initial value of the control variable,
+	= an increment (or decrement) bywhich the control variable is modified each time through the loop,
+	= and a loop-continuation condition that determines whether looping should continue.
+	
+5.6 Compare and contrast the while and for repetition statements.
+	= The while and for repetition statements repeatedly execute a statement or set of
+	statements as long as a loop-continuation condition remains true. Both statements
+	execute their bodies zero or more times. The for repetition statement specifies the
+	counter-controlled-repetition details in its header, whereas the control variable in a
+	while statement normally is initialized before the loop and incremented in the loop's
+	body. Typically, for statements are used for counter-controlled repetition, and 
+	while statements are used for sentinel-controlled repetition. However, while and for
+	can each be used for either repetition type
+
+5.7 Discuss a situation in which it would be more appropriate to use a
+do...while statement than a while statement. Explain why.
+	= If you want some statement or set of statements to execute at least once, then repeat
+	based on a condition, a do...while is more appropriate than a while (or a for).  A do...while
+	statement tests the loop-continuation condition after executing the loop’s body; therefore,
+	the body always executes at least once. A while tests the loop-continuation condition before
+	executing the loop’s body, so the program would need to include the statement(s) required to
+	execute at least once both before the loop and in the body of the loop. Using a do...while
+	avoids this duplication of code. Suppose a program needs to obtain an integer value from the
+	user, and the integer value entered must be positive for the program to continue. In this case,
+	a do...while’s body could contain the statements required to obtain the user input, and the
+	loop-continuation condition could determine whether the value entered is less than 0. If so,
+	the loop would repeat and prompt the user for input again. This would continue until the user
+	entered a value greater than or equal to zero. Once this criterion was met, the loop-continuation
+	condition would become false, and the loop would terminate, allowing the program to continue past
+	the loop. This process is often called validating input.
+	
+5.8 Compare and contrast the break and continue statements.
+	= The break and continue statements alter the flow of control through a control statement.
+	The break statement, when executed in one of the repetition statements, causes immediate
+		exit from that statement. Execution continues with the first statement after the control statement.
+	In contrast, the continue statement, when executed in a repetition statement, skips the remaining
+	statements in the loop body and proceeds with the next iteration of the loop.
+	
+	= In while and do...while statements, the program evaluates the loop-continuation test immediately
+	after the continue statement executes. In a for statement, the increment expression executes, then
+	the program evaluates the loop-continuation test.
+
+5.9 Find and correct the error(s) in each of the following segments of code:
+
+a)//"for" cannot be capitalized. replace with commas with semicolons. replace i++ with i--
+	For(i=100,i>=1, i++ )
+		System.out.println( i );
+		
+b)//should have break statement in each case body
+	The following code should print whether integer value is odd or even:
+	switch( value %2)
+	{
+		case 0:
+			System.out.println("Even integer");
+		case1:
+			System.out.println("Odd integer");
+	}
+	
+c)//replace i+= 2 with i-= 2
+	The following code should output the odd integers from 19 to 1:
+	for(i=19;i>=1;i+=2)
+		System.out.println( i );
+
+d)//"while" cannot be capitalized. should be counter <= 100
+	The following code should output the even integers from 2 to 100:
+	counter =2;
+	do
+	{
+		System.out.println( counter );
+		counter +=2;
+	}While( counter <100);
