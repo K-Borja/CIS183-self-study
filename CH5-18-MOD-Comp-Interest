@@ -1,0 +1,40 @@
+/*5.18 (Modified Compound-Interest Program)
+Modify the application in Fig. 5.6 to use only integers to calculate the compound interest.
+[Hint: Treat all monetary amounts as integral numbers of pennies. Then break the result
+into its dollars and cents portions by using the division and remainder operations,
+respectively. Insert a period between the dollars and the cents portions.]*/
+
+public class Interest
+{
+	public static void main(String[] args)
+	{
+		int amount;				//amount of deposit at end of each year
+		int principal = 100000; //initial amount before interest
+		int rate = 5;			//interest rate
+		int pennyRatio = 100; 	//penny to dollar ratio
+		int dollar;				//dollars placeholder
+		int cent;				//cents placeholder
+		
+		//display headers
+		System.out.printf("%s%20s\n", "Year", "Amount on deposit");
+		
+		// calculate amount on deposit for each of ten years
+		for(int year = 1;year<=10; year++ )
+		{
+
+			// calculate new amount for specified year
+			amount = principal * (pennyRatio + rate) / pennyRatio;
+			principal = amount;
+			dollar = amount/pennyRatio;
+			cent = amount%pennyRatio;
+			if(cent <10)
+				cent *=10;
+			
+			// display the year and the amount
+			if(cent == 0)
+				System.out.printf("%4d%7d.%d%d\n", year,dollar,cent,cent);
+			else
+				System.out.printf("%4d%7d.%d\n", year, dollar, cent);
+		}// end for
+	}//end main
+}//end class
