@@ -1,0 +1,94 @@
+/* 5.29(The  Twelve  Days  of  Christmas  Song)
+Write an application that uses repetition and switch statements to
+print the song The Twelve Days of Christmas. One switch statement should
+be used to print the day (first, second, and so on). A separate switch
+statement should be used to print the remainder of each verse. Visit the website
+en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song) for the lyrics of the song.*/
+
+public class TwelveDays
+{
+	public static void main(String[] args)
+	{
+		for(int day =1;day <= 12; day++)
+		{
+			//first line of the song
+			System.out.print("On the ");
+			
+			//ordinal numbers
+			switch(day)
+			{
+				case 1:
+					System.out.print("First");
+					break;
+				case 2:
+					System.out.print("Second");
+					break;
+				case 3:
+					System.out.print("Third");
+					break;
+				case 4:
+					System.out.print("Fourth");
+					break;
+				case 5:
+					System.out.print("Fifth");
+					break;
+				case 6:
+					System.out.print("Sixth");
+					break;
+				case 7:
+					System.out.print("Seventh");
+					break;
+				case 8:
+					System.out.print("Eighth");
+					break;
+				case 9:
+					System.out.print("Ninth");
+					break;
+				case 10:
+					System.out.print("Tenth");
+					break;
+				case 11:
+					System.out.print("Eleventh");
+					break;
+				case 12:
+					System.out.print("Twelfth");
+					break;
+			}//end of switch
+			System.out.print(" day of Christmas,\nMy true love sent to me\n");
+			
+			//number of verses depend on number of days
+			switch(day)
+			{
+				case 12:
+					System.out.print("Twelve Drummers Drumming,\n");
+				case 11:
+					System.out.print("Eleven Pipers Piping,\n");
+				case 10:
+					System.out.print("Ten Lords a-Leaping,\n");
+				case 9:
+					System.out.print("Nine Ladies Dancing,\n");
+				case 8:
+					System.out.print("Eight Maids a-Milking,\n");
+				case 7:
+					System.out.print("Seven Swans a-Swimming,\n");
+				case 6:
+					System.out.print("Six Geese a-Laying,\n");
+				case 5:
+					System.out.print("Five Golden Rings,\n");
+				case 4:
+					System.out.print("Four Calling Birds,\n");
+				case 3:
+					System.out.print("Three French Hens,\n");
+				case 2:
+					System.out.print("Two Turtle Doves,\n");
+				case 1:
+					if(day > 1)
+						System.out.print("And a ");
+					else
+						System.out.print("A ");
+					System.out.print("Partridge in a Pear Tree.\n\n\n");
+					break;
+			//end switch
+		}//end for statement
+	}//end main
+}//end class
