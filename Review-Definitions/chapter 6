@@ -1,0 +1,181 @@
+6.1 Fill in the blanks in each of the following statements:
+a) A method is invoked with a(n) ________.
+= method call
+
+b) A variable known only within the method in which it’s declared
+is called a(n)________.
+= local variable
+
+c) The ________ statement in a called method can be used to pass the
+value of an expression back to the calling method.
+= return
+
+d) The keyword ________ indicates that a method does not return a value.
+= void
+
+e)  Data can be added or removed only from the ________ of a stack.
+= top
+
+f)  Stacks are known as ________ data structures; the last item
+pushed (inserted) on the stack is the first item popped (removed) from the stack.
+	= Last-In, First-Out (LIFO)
+
+g) The three ways to return control from a called method to a caller are ________,
+________ and ________.
+	= return;
+	= return expression;
+	= a closing brace
+
+h) An object of class ________ produces random numbers.
+= "Random." (java class import by java.util.Random)
+
+i)  The program-execution stack contains the memory for local variables on each
+invocation of a method during a program’s execution. This data, stored as a portion
+of the program-execution stack, is known as the ________ or ________ of the method call.
+	= activation record
+	= stack frame
+
+j)  If there are more method calls than can be stored on the program-execution stack,
+an error known as a(n) ________ occurs.
+	= stack overflow
+
+k) The ________ of a declaration is the portion of a program that can refer to the
+entity in the declaration by name.
+	= scope
+
+l)  It’s possible to have several methods with  the same name that each operate on different
+types or numbers of arguments. This feature is called method ________
+	= overloading
+
+m) The program-execution stack is also referred to as the ________ stack.
+= method call
+
+6.2 For the class Craps in Fig. 6.8, state the scope of each of the following entities:
+a) the variable 'randomNumbers'.	= Craps class body
+b) the variable 'die1'.				= rollDice method block
+c)  the method 'rollDice'.			= Craps class body
+d) the method 'main'.				= Craps class body
+e)  the variable 'sumOfDice'.		= main method block
+
+6.3 Write an application that tests whether the examples of the Math class method calls shown
+in Fig. 6.2 actually produce the indicated results.
+
+	public class MathTest
+	{
+		public static void main(String[] args)
+		{
+			//absolute value of x
+			System.out.println(Math.abs(-23.7));
+		
+			//round to the smallest integer not less than x
+			System.out.println(Math.ceil(9.2));
+		
+			//cosine of x in radians
+			System.out.println(Math.cos(0.0));
+		
+			//exponential method e^x
+			System.out.println(Math.exp(1.0));
+		
+			//round x to the largest integer not greater than x
+			System.out.println(Math.floor(9.2));
+		
+			//natural log of x(base e) or ln e
+			System.out.println(Math.E);
+		
+			//large value in x and y
+			System.out.println(Math.max(2.3,12.7));
+		
+			//smaller value in x and y
+			System.out.println(Math.min(2.3,12.7));
+		
+			//x raised to the power y
+			System.out.println(Math.pow(2.0, 7.0));
+		
+			//sine of x in radians
+			System.out.println(Math.sin(0.0));
+		
+			//square root of x
+			System.out.println(Math.sqrt(900.0));
+		
+			//tangent of x in radians
+			System.out.println(Math.tan(0.0));
+		}//end main
+	}//end class MathTest	
+
+6.4 Give the method header for each of the following methods:
+	a) Method 'hypotenuse', which takes two double-precision, floating-point arguments 'side1'
+	and 'side2' and returns a double-precision, floating-point result.
+	
+		double hypotenuse(double side1, double side2)
+	
+	b) Method 'smallest', which takes three integers 'x', 'y' and 'z' and returns an integer.
+		
+		int smallest(int x, int y, int z)
+		
+	c)  Method 'instructions', which does not take any arguments and does not return a value.
+	[Note: Such methods are commonly used to display instructions to a user.]
+		
+		void instructions()
+	
+	d) Method 'intToFloat',which takes integer argument 'number' and returns a 'float'.
+		
+		float inToFloat(int number)
+	
+6.5 Find the error in each of the following program segments. Explain how to correct the error.
+	a) //method 'g' cannot have method 'h' declared inside of it. move h() out of g().
+	void g()
+	{
+		System.out.println("Inside method g");
+		
+		void h()
+		{
+			System.out.println("Inside method h");
+		}
+	}
+	
+	b) //needs to have a return statement inside sum(). return result before the sum() ends.
+	int sum(int x, int y)
+	{
+		int result;
+		result = x + y;
+	}
+	
+	c) //remove the semicolon. remove declaration of float a.
+	void f(float a);
+	{
+		float a;
+		System.out.println( a );
+	}
+	
+	d) //product method cannot return a value. change void to int.
+	void product()
+	{
+		int a=6,b=5,c=4, result;
+		result = a*b*c;
+		System.out.printf("Result is %d\n", result );
+		return result;
+	}
+
+6.6 Write a complete Java application to prompt the user for the double radius of a sphere,
+and call method 'sphereVolume' to calculate and display the volume of the sphere. Use the
+following statement to calculate the volume: double volume = (4.0 / 3.0)*Math.PI* Math.pow( radius,3)
+
+	import java.util.Scanner;	
+	public class ch6exercise6
+	{
+		public static void main(String[] args)
+		{
+			Scanner input = new Scanner(System.in);
+		
+			System.out.print("Enter sphere's radius: ");
+			double r = input.nextDouble();
+		
+			System.out.print("Volume: %.2f\n", sphereVolume(r));
+		}
+	
+		public static double sphereVolume(double radius)
+		{
+			double volume = (4.0/3.0) * Math.PI * Math.pow(radius,3);
+			return volume;
+		}
+	}	
