@@ -1,0 +1,36 @@
+/* 6.32(Distance Between Points)
+Write method distance to calculate the distance between two points
+( x1 , y1 ) and ( x2 , y2 ). All numbers and return values should be
+of type double .Incorporate this method into an application that
+enables the user to enter the coordinates of the points */
+
+import java.util.Scanner;
+public class Coordinates
+{
+	public static void main(String[] args)
+	{
+		//Scanner object
+		Scanner input = new Scanner(System.in);
+		
+    //prompt for (x1,y1)
+		System.out.print("Enter x1: ");
+		double x1 = input.nextDouble();
+		System.out.print("Enter y1: ");
+		double y1 = input.nextDouble();
+		
+    //prompt for (x2,y2)
+		System.out.print("Enter x2: ");
+		double x2 = input.nextDouble();
+		System.out.print("Enter y2: ");
+		double y2 = input.nextDouble();
+		
+    //display distance between (x2,y2) and (x1,y1)
+		System.out.printf("(%.2f, %.2f)", distance(x1, x2), distance(y1, y2));
+	}//end main()
+	
+  //determine distance between coordinates
+	public static double distance(double pt1, double pt2)
+	{
+		return (pt2 - pt1);
+	}//end distance()
+}//end class
