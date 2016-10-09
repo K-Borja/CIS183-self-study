@@ -1,0 +1,70 @@
+/* 6.8 (Parking Charges)
+A parking garage charges a $2.00 minimum fee to park for up to three hours.
+The garage charges an additional $0.50 per hour for each hour or part thereof
+in excess of three hours. The maximum charge for any given 24-hour period is $10.00.
+Assume that no car parks for longer than 24 hours at a time. Write an application
+that calculates and displays the parking charges for each customer who parked
+in the garage yesterday. You should enter the hours parked for each customer.
+The program should display the charge for the current customer and should
+calculate and display the running total of yesterday’s receipts.
+It should use the method calculateCharges to determine the charge for each customer. */
+
+import java.util.Scanner;
+public class Parking
+{
+	public static void main(String[] args)
+	{
+		/*variables*/
+		int hoursParked;				//one customer's total hours
+		double totalCharge;				//one customer's total charge fee.
+		double totalReceipt = 0;		//overall total of yesterday's receipts
+		/*end of variables*/
+		
+		//Scanner object
+		Scanner input = new Scanner(System.in);
+		
+		//prompt for counter
+		System.out.print("Welcome!\nEnter amount of customers yesterday: ");
+		int numberOfCustomers = input.nextInt();		
+		
+		//counter controlled loop
+		for(int count =1; count <= numberOfCustomers; count++)
+		{
+			System.out.printf("Customer #0%d\n",count);
+			System.out.printf("Enter hours parked: ");
+			hoursParked = input.nextInt();
+			
+			totalCharge = calculateCharges(hoursParked);
+			totalReceipt += totalCharge;
+		}//end for
+		System.out.printf("Total of yesterday's receipt: $%.2f\n", totalReceipt);
+	} //end main
+	
+	//determine the charge for each customer
+	public static double calculateCharges(int hours)
+	{
+		/*variables*/
+		final int HOURS_MIN = 3;		//3 hours for minimum fee
+		final double MIN_FEE = 2.00;	//minimum fee for three hours
+		final double MAX_FEE = 10.00;	//max charge
+		double feePerHour = 0.50;		//additional fee after 3 hours
+		double charge;					//one customer's total charge fee.
+		/*end of variables*/
+		
+		//include base fee to total charges
+		charge = MIN_FEE;
+		//charge additional fee if hours is greater than 3.
+		if(hours > HOURS_MIN)
+		{
+			charge += ((hours - HOURS_MIN) * feePerHour);
+			//The maximum charge for any given 24-hour period is $10.00.
+			if(charge >= MAX_FEE)
+				charge = MAX_FEE;
+		}//end if
+		//display total charge for this customer
+		System.out.printf("Total charge: $%.2f\n\n", charge);
+		
+		//return total charge to accumulate.
+		return charge;
+	}//end of calculateCharges()
+}//end class
