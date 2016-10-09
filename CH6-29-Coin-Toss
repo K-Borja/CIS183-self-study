@@ -1,0 +1,96 @@
+/*6.29 (Coin Tossing) Write an application that simulates coin tossing.
+Let the program toss a coin each time the user chooses the Toss Coin menu option.
+Count the number of times each side of the coin appears. Display the results.
+The program should call a separate method flip that takes no arguments
+and returns a value from a Coin enum(HEADS and TAILS ).
+[Note: If the program realistically simulates coin tossing, each side of the coin
+should appear approximately half the time]*/
+
+import java.util.Scanner;
+import java.util.Random;
+public class CoinToss
+{
+	//enumeration, representing heads and tails, of coin type
+	private enum Coin{ HEADS, TAILS };
+	//basically, enumeration is a set of constants represented by identifiers
+	
+	public static void main(String[] args)
+	{
+		//Scanner object
+		Scanner input = new Scanner(System.in);
+		
+		Coin resultCoin;	//can contain HEADS or TAILS
+		int menu;	//user selects a number from the menu
+		int headCount = 0;
+		int tailCount= 0;
+		
+		//sentinel controlled loop
+		do
+		{	
+			//menu prompt
+			System.out.println("\n\n------Menu------");
+			System.out.println("1---Toss Coin");
+			System.out.println("2---Exit Program");
+			System.out.println("----------------");
+			System.out.print("Select option: ");
+			menu = input.nextInt();
+			System.out.println("----------------");
+			
+			//Toss coin selected
+			if(menu == 1)
+			{
+				System.out.println("Tossing coin...\nResult:");
+				resultCoin = flip(); //receives enum Coin type
+				
+				//display depends on the result of flip()
+				if(resultCoin == Coin.HEADS)
+				{
+					System.out.println("Heads");
+					headCount++;
+				}else
+				{
+					System.out.println("Tails");
+					tailCount++;
+				}//end else
+			}//end if
+		}while(menu == 1);
+		//program exits if anything but 1
+		
+		//if the toss coin menu was ever chosen, display
+		//the number of times the side of the coin appeared
+		if(headCount > 0 || tailCount > 0)
+		{
+			System.out.println("Number of times\neach side of the\ncoin appeared");
+			System.out.printf("Heads: %d\n", headCount);
+			System.out.printf("Tails: %d\n", tailCount);
+		}//end if
+		
+		System.out.println("Good bye.");
+	} //end of main
+	
+	//The program should call a separate method flip that takes no arguments
+	//and returns a value from a Coin enum(HEADS and TAILS ).
+	public static Coin flip()
+	{	
+		//Random object
+		Random randomNumbers = new Random();
+	
+		//Randomly generate 1 or 2
+		int coinFlip = 1+randomNumbers.nextInt(2);
+		
+		//declare and initialize coin type variable
+		Coin result = Coin.TAILS;
+	
+		//determine value of coin type variable
+		switch(coinFlip)
+		{
+			case 1:
+				result = Coin.HEADS;
+				break;
+			case 2:
+				result = Coin.TAILS;
+				break;
+		}//end switch
+		return result;
+	}//end flip
+}//end class
