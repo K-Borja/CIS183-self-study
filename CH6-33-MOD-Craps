@@ -1,0 +1,180 @@
+/*6.33 (Craps Game Modification)
+Modify the craps program of Fig. 6.8 to allow wagering. Initialize variable
+bankBalance to 1000 dollars. Prompt the player to enter a wager.Check that
+wager is less than or equal to bankBalance, and if it’s not, have the user
+reenter wager until a valid wager is entered. Then, run one game of craps.
+If the player wins, increase bankBalance by wager and display the new
+bankBalance. If the player loses, decrease bankBalance by wager, display
+the new bankBalance, check whether bankBalance has become zero and, if so,
+display the message =Sorry. You busted!= As the game progresses, display
+various messages to create some =chatter=, such as =Oh, you're going for
+broke, huh?= or =Aw c'mon, take a chance!= or =You're up big. Now's the time
+to cash in your chips!=. Implement the =chatter= as a separate method that
+randomly chooses the string to display.*/
+
+import java.util.Random;
+import java.util.Scanner;
+public class Craps
+{
+	//Random object
+	private static final Random randomNumbers = new Random();
+	
+	//enumeration representing game status
+	private enum Status {CONTINUE, WON, LOST};
+	
+	//constants representing common dice rolls
+	private static final int SNAKE_EYES =2;
+	private static final int TREY =3;
+	private static final int SEVEN =7;
+	private static final int YO_LEVEN =11;
+	private static final int BOX_CARS =12;
+	private static Status gameStatus; //can contain CONTINUE, WON, or LOST
+	
+	//play one game of craps
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		double bankBalance = 1000.00;
+		int times =1; //counts how many times played
+		boolean cont=false;	//controls the dowhile loop
+		do
+		{
+			//wager prompt
+			System.out.print("Enter wager: $");
+			double wager = input.nextDouble();
+						
+			//check that the wager valid
+			while(wager > bankBalance)
+			{
+				System.out.print("Enter a valid wager: $");
+				wager = input.nextDouble();
+			}//end while
+				
+			//continues here if valid
+			//run one game of Craps
+			game();
+				
+			//game() determines whether to add or subtract wager
+			if(gameStatus == Status.WON)
+				bankBalance += wager;
+			else
+				bankBalance -= wager;
+				
+			//display bank balance.
+			System.out.printf("Bank balance: $%.2f\n",bankBalance);
+			
+			//if there's still money in the balance
+			//loop ends when bank is zero or user cashes in
+			if(bankBalance > 0)
+			{
+				//add chatter as game progresses
+				if(times > 1)
+					chatter();
+				
+				//prompt user to continue or cash in
+				System.out.print("\nEnter the 0 to cash in or\nEnter 1 to continue: ");
+				int dialogCQ = input.nextInt();
+				switch(dialogCQ)
+				{
+					case 0:
+						System.out.printf("Cashed in: $%.2f\n", bankBalance);
+						cont = false;
+						break;
+					case 1:
+					default:
+						System.out.println("\nPlaying another round.");
+						times++;
+						cont = true;
+						break;
+				}//end switch
+			}else
+			{
+				System.out.print("Sorry. You busted!");
+				cont = false;				
+			}//end ifelse
+		}while(cont);//end doWhile
+	}//end main
+	
+	//play one round of Craps
+	public static Status game()
+	{
+		int myPoint =0;		//point if neither win or lost on first roll
+		int sumOfDice = rollDice();	//first roll of dice
+				
+		//determine game status and point based on first roll
+		switch(sumOfDice)
+		{
+			case SEVEN:
+			case YO_LEVEN:
+				gameStatus = Status.WON;
+				break;
+			case SNAKE_EYES:
+			case TREY:
+			case BOX_CARS:
+				gameStatus = Status.LOST;
+				break;
+			//neither win or lose. remember point
+			default:
+				gameStatus = Status.CONTINUE;
+				myPoint = sumOfDice;
+				System.out.printf("Point is %d\n", myPoint);
+				break;
+		}//end switch
+		
+		//while game is not complete
+		while(gameStatus == Status.CONTINUE)
+		{
+			sumOfDice = rollDice(); //roll dice again
+			
+			//determine game status based on the 2 dice rolls
+			if(sumOfDice == myPoint)
+				gameStatus = Status.WON;
+			else
+				if(sumOfDice == SEVEN)
+					gameStatus = Status.LOST;
+		}//end while
+		
+		//display won or lost message
+		if(gameStatus == Status.WON)
+			System.out.println("Player wins.");
+		else
+			System.out.println("Player loses.");
+		
+		return gameStatus;
+	}//end game()
+	
+	//random dice rolls
+	public static int rollDice()
+	{
+		//roll 2 dices
+		int die1 = 1 + randomNumbers.nextInt(6);
+		int die2 = 1 + randomNumbers.nextInt(6);
+		
+		//sum of 2 dices
+		int sum = die1 + die2;
+		
+		//display results
+		System.out.printf("Player rolled %d + %d = %d\n", die1, die2, sum);
+		
+		return sum;
+	}//end rollDice
+	
+	public static void chatter()
+	{
+		int randomizer = 1+randomNumbers.nextInt(3);
+		
+		switch(randomizer)
+		{
+			case 1:
+				System.out.println("Aw c'mon, take a chance!\n");
+				break;
+			case 2:
+				System.out.println("Oh, you're going for broke, huh?\n");
+				break;
+			case 3:
+				System.out.println("You're up big. Now's the time to cash in your chips!\n");
+				break;
+		}//end switch
+	}//end chatter()
+}//end class
