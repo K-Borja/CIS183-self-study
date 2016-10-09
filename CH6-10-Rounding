@@ -1,0 +1,48 @@
+/* 6.10 (Rounding Numbers)
+To round numbers to specific decimal places, use a statement like
+y = Math.floor( x * 10 +0.5)div 10;
+which rounds x to the tenths position (i.e., the first position to
+the right of the decimal point), or
+y = Math.floor( x * 100 + 0.5) div 100;
+which rounds x to the hundredths position (i.e., the second position
+to the right of the decimal point). Write an application that defines
+four methods for rounding a number x in various ways:
+a)roundToInteger( number )
+b)roundToTenths( number )
+c)roundToHundredths( number )
+d)roundToThousandths( number )*/
+
+public class Rounding
+{
+	public static void main(String[] args)
+	{
+		double x = 44.444444444;
+		
+		System.out.println("Original number: " + x);
+		System.out.println("Round to integer: " + roundToInteger(x));
+		System.out.println("Round to tenths: " + roundToTenths(x));
+		System.out.println("Round to hundredths: " + roundToHundredths(x));
+		System.out.println("Round to thousandths: "+ roundToThousandths(x));
+	}
+	
+	public static double roundToInteger(double num)
+	{
+		double y = Math.floor(num+0.5);
+		return y;
+	}
+	public static double roundToTenths(double num)
+	{
+		double y = Math.floor(num * 10 + 0.5)/10;
+		return y;
+	}
+	public static double roundToHundredths(double num)
+	{
+		double y = Math.floor(num * 100 + 0.5)/100;
+		return y;
+	}
+	public static double roundToThousandths(double num)
+	{
+		double y = Math.floor(num * 1000 + 0.5)/1000;
+		return y;
+	}
+}
