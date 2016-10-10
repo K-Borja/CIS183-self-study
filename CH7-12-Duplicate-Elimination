@@ -1,0 +1,61 @@
+/* 7.12 (Duplicate Elimination)
+Use a one-dimensional array to solve the following problem:
+Write an application that inputs five numbers,
+each between 10 and 100, inclusive. As each number is read,
+display it only if it’s not a duplicate of a number already read.
+Provide for the worst case, in which all five numbers are different.
+Use the smallest possible array to solve this problem. Display the
+complete set of unique values input after the user enters each new value. */
+
+import java.util.Scanner;
+public class EliminateDuplicate
+{
+	public static void main(String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int[] array = new int[5];
+		
+		boolean dupe = false;
+		for(int element = 0; element < array.length; element++)
+		{
+			System.out.print("Enter an integer: ");
+			int num = input.nextInt();
+						
+			//check if the input was out of bounds
+			while(num < 10 || num > 100)
+			{	
+				System.out.print("Integer must be between 10 and 100\n");
+				System.out.print("Enter an integer: ");
+				num = input.nextInt();
+			}//while
+		
+			//check each element of the array
+			for(int i = 0; i < element; i++)
+			{	
+				//if the number is already in the array
+				//signal dupe and get out of this for-loop
+				if(num == array[i])
+				{	
+					dupe = true;
+					break;
+				}
+				//if i is the current number of the element,
+				//skip to the next iteration of this for loop
+				if(i == element);
+					continue;
+			}			
+			
+			//store the input number in the array after comparing.
+			array[element] = num;
+			
+			//if the number is not a dupe, display it
+			if(dupe == false)
+				System.out.println(array[element]);
+			
+			//reset dupe status.
+			dupe = false;
+		}//for
+		
+	}//main
+}//class
