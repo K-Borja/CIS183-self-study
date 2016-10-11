@@ -1,0 +1,66 @@
+/* 7.16 (Using the Enhanced for Statement)
+Write an application that uses an enhanced for statement
+to sum the double values passed by the command-line arguments.
+[Hint: Use the static method parseDouble of class Double to
+convert a String to a double value.]*/
+
+public class EnhancedFor
+{
+	public static void main(String[] args)
+	{
+		//get array size, first argument in command-line
+		int arraySize = Integer.parseInt(args[0]);
+		int counterTest = arraySize-1;
+		//check number of commandline arguments
+		if(arraySize != args.length)
+		{
+			System.out.println("Command must have " + counterTest + " numbers after the number "+ arraySize);
+			System.out.println("Re-enter entire command ");
+		}
+		else
+		{
+			//create array
+			double[] array = new double[arraySize];
+		
+			//get values
+			for(int count =1; count < arraySize; count++)
+				array[count] = Double.parseDouble(args[count]);
+		
+			double sum = 0;
+			for(double d : array)
+			sum += d;	
+			
+			System.out.println(sum);
+		}
+	}
+}
+
+/*public class EnhancedFor
+{
+	public static void main(String[] args)
+	{
+		// check number of command-line arguments
+		if(args.length!=3)
+			System.out.println("Error: Please re-enter the entire command, including\n"+"an array size, initial value and increment.");
+		else{
+		// get array size from first command-line argument
+		int arrayLength = Integer.parseInt(args[0]);
+		int[] array =new int[ arrayLength ];// create array
+		
+		// get initial value and increment from command-line arguments
+		int initialValue = Integer.parseInt( args[1]);
+		int increment = Integer.parseInt( args[2]);
+		
+		// calculate value for each array element
+		for(int counter =0; counter < array.length; counter++ )
+			array[ counter ] = initialValue + increment * counter;
+		
+		System.out.printf("%s%8s\n","Index","Value");
+		
+		// display array index and value
+		for(int counter =0; counter < array.length; counter++ )
+			System.out.printf("%5d%8d\n", counter, array[ counter ] );
+		
+		}// end else
+	}// end main
+}// end class InitArray*/
