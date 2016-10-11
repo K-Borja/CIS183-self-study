@@ -1,0 +1,220 @@
+/*7.19(Airline Reservations System)
+A small airline has just purchased a computer for its new automated reservations system.
+You’ve been asked to develop the new system. You’re to write an application to assign
+seats on each flight of the airline’s only plane (capacity: 10 seats). Your application
+should display the following alternatives:
+	Please type 1 for First Class and Please type 2 for Economy.
+	
+		If the user types 1, your application should
+		assign a seat in the first-class section (seats 1–5).
+		
+		If the user types 2, your application should
+		assign a seat in the economy section (seats 6–10).
+		
+	Your application should then display a boarding pass indicating
+	the person’s seat number and whether it’s in the first-class or
+	economy section of the plane.
+	
+Use a one-dimensional array of primitive type boolean to represent the seating
+chart of the plane. Initialize all the elements of the array to false to indicate
+that all the seats are empty. As each seat is assigned, set the corresponding element
+of the array to true to indicate that the seat is no longer available.
+
+Your application should never assign a seat that has already been assigned.
+When the economy section is full, your application should ask the person if it’s
+acceptable to be placed in the first-class section (and vice versa).
+If yes, make the appropriate seat assignment. If no, display the message
+Next flight leaves in 3 hours. */
+
+import java.util.Scanner;
+public class Airline
+{
+	private static boolean[] seat = new boolean[11];	//seat array
+	private static Scanner input = new Scanner(System.in);
+	
+	private static int i = 1;	//first class counter
+	private static int j = 6;	//econo class counter
+	private static int passenger = 0; //passenger counter;
+	
+	private static boolean First =false;
+	private static boolean Econo = false;
+	
+	public static void main(String[] args)
+	{
+		//initial prompt
+		System.out.print("WELCOME!\n\tTo reserve a seat, press 1.\n\tTo exit program, press 2.\nSelect: ");
+		int sentinel = input.nextInt();
+		
+		//sentinel controlled prompt
+		while(sentinel != 2)
+		{			
+			//choose seating section
+			System.out.print("Choose a seating section.\n\tPress 1 for First Class.\n\tPress 2 for Economy.\nSelect: ");
+			int seatClass = input.nextInt();
+			
+			//check if input is valid
+			while(seatClass < 1 || seatClass > 2)
+			{
+				System.out.print("Choose a seating section.\n\tPress 1 for First Class.\n\tPress 2 for Economy.\nSelect: ");
+				seatClass = input.nextInt();
+			}//end input validation
+			
+			//assign a seat			
+			if(seatClass == 1)
+				FirstClass();
+			else
+				Economy();
+			
+			//display boarding pass if successfully booked
+			if(First == true || Econo == true)
+				boardingPass();
+
+			//check how many passengers booked before prompting again
+			if(passenger >= 10)
+			{
+				//max capacity, get out of while loop and end program.
+				System.out.println("Maximum capacity (10) has been reached.");
+				break;
+			}else
+			{
+				//reset values
+				notEcono();
+				notFirst();
+			
+				//prompt again
+				System.out.println("\n============================\n");
+				System.out.print("WELCOME!\n\tTo reserve a seat, press 1.\n\tTo exit program, press 2.\nSelect: ");
+				sentinel = input.nextInt();
+			}//end if-else passenger
+			
+		}//end sentinel controlled loop
+		System.out.println("Goodbye.");
+	}//end main
+	
+	//Book in first class if selected and if possible
+	public static void FirstClass()
+	{
+		int YN; //pop up selection if full
+		
+		//assign a seat in the First class
+		if(i<=5)
+		{
+			seat[i] = true;	//seat[i] is now taken
+			isFirstClass();	//successfully booked, triggered for boarding pass
+			passenger();	//increment total passengers.
+			
+		}else
+		{
+			//prompt if First class is full
+			System.out.println("First class is full!\nIs Economy class okay?");
+			System.out.print("\tPress 1 for Yes.\n\tPress 2 for No.\nSelect: ");
+			YN = input.nextInt();
+		
+			if(YN ==2)
+			{
+				//if customer doesn't want Economy, exit loop
+				System.out.println("The next flight is in 3 hours.");
+			}else
+				Economy();	//otherwise, go to Economy method
+		}//end if else
+
+	}//end FirstClass()
+	
+	//increment First class seat counter
+	public static int I()
+	{
+		i++;
+		return i;
+	}
+	
+	//increment Economy class seat counter
+	public static int J()
+	{
+		j++;
+		return j;
+	}
+	
+	//set field variable First to true
+	public static boolean isFirstClass()
+	{
+		First = true;
+		return First;
+	}
+	
+	//set field variable First to false
+	public static boolean notFirst()
+	{
+		First = false;
+		return First;
+	}
+	
+	//Book in Economy class if selected and if possible
+	public static void Economy()
+	{
+		int YN; //pop up selection if full
+		
+		//assign a seat in Economy class
+		if(j <= 10)
+		{
+			seat[j] = true;	//seat[j] is now taken
+			isEcono();		//successfully booked, triggered for boarding pass
+			passenger();	//increment total passengers
+		}else
+		{
+			//prompt if economy class is full
+			System.out.println("Economy class is full!\nIs First class okay?");
+			System.out.print("\tPress 1 for Yes.\n\tPress 2 for No.\nSelect: ");
+			YN = input.nextInt();
+					
+			if(YN ==2)
+			{
+				//if customer doesnt want first class, exit loop
+				System.out.println("The next flight is in 3 hours.");
+			}else
+				FirstClass();	//otherwise, go to FirstClass method
+		}//end if else
+			
+
+	}//end Economy()
+	
+	//set field variable Econo to true
+	public static boolean isEcono()
+	{
+		Econo = true;
+		return Econo;
+	}
+	
+	//set field variable Econo to false
+	public static boolean notEcono()
+	{
+		Econo = false;
+		return Econo;
+	}
+	
+	//increment total passengers
+	public static int passenger()
+	{
+		passenger++;
+		return passenger;
+	}
+
+	//display boarding pass
+	public static void boardingPass()
+	{
+		System.out.println();
+		System.out.print("Your Boarding Pass Details:\n");
+		if(First == true)
+		{
+			System.out.println("\tSeat Section: First Class");
+			System.out.printf("\tSeat Number: %d\n", i);
+			I();
+		}
+		if(Econo == true)
+		{
+			System.out.println("\tSeat Section: Economy Class");
+			System.out.printf("\tSeat Number: %d\n", j);
+			J();
+		}
+		System.out.println("Thank you!");
+	}//end boardingPass()
+}
