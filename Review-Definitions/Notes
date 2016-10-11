@@ -1,0 +1,128 @@
+printing
+
+
+	integers 	%d
+	floating-point
+		scientific notation	1.504582 x 10^2--->1.504582e+02
+			%e		if greater than 10^7
+					or less than 10^-3
+			
+			%g		otherwise
+
+The UML (Unified Modeling Language)
+	UML Class diagram
+
+ _______________________________________
+|		class name	    	|
+|=======================================|
+| -instanceV : dataType	    		|
+|=======================================|
+|<<constructor>>name(argName:dataType)	|	remember, <<constructor>> is needed, always top
+| +methods(argName:dataType)		|	+ when public, - when private
+| +method():returnType	  		|
+| +dohtem()		    		|	no returnType specified means void
+ =======================================
+
+Sequence structure diagram
+ 	0
+	|
+	V
+ __________________
+|add grade to total|
+ ==================
+	|
+	V
+ __________________
+|add 1 to counter  |
+ ==================
+	|
+	V
+       (0)
+
+if single-selection statement
+ 	0
+	|
+	V	blah>#	  __________
+       < >-------------->|print blah|
+blah<#  |		  ==========
+	V		       |
+       (0)<--------------------|
+
+if...else double selection
+	 	0
+		|
+		|
+ _______	V	 _______
+|	|<-----< >----->|	|
+ =======		 =======
+    |			     |
+    |_________>(0)<__________|
+
+
+In the UML, each class is modeled in a class diagram as a rectangle with three compartments.
+The top: class’s name centered horizontally in boldface.
+The middle: the class’s attributes, which correspond to fields.
+The bottom: the class’s operations, which correspond to methods and constructors in Java.
+
+
+Declaring instance variables with access modifier private (p. 80) is known as data hiding
+
+The default value for a field of type String (or any other reference type) is null.
+
+import declarations are not required if you always use fully qualified class names
+	ex.) instead of:
+		Scanner input = new Scanner( System.in );
+	it can be written as:
+		java.util.Scanner input = new java.util.Scanner( System.in );
+
+Primitive-type instance variables are initialized by default. Variables of types byte, char, short,
+int, long, float and double are initialized to 0. Variables of type boolean are initialized to false
+
+Reference-type variables store the location of an object in the computer’s
+memory. Such variables refer to objects in the program. The object that’s referenced may
+contain many instance variables and methods
+
+
+=========================================
+Two dimensional Arrays
+
+public int getMinimum()
+{
+	//assume the first element is the smallest
+	int lowGrade= grades[0][0];
+
+	//studentGrades is a one dimensional array that now contains grades
+	for(int[] studentGrades : grades)
+	{
+		for(int grade: studentGrades)
+		{
+			if(grade < lowGrade)
+				lowGrade = grade;
+		}
+	}
+	return lowGrade;
+}
+
+Passing two dimensional array
+
+publc void outputGrades()
+{
+	for(int student = 0; student < grades.length; student++)
+	{
+		:
+		:
+		//a row of grades is passed to getAverage()
+		double average = getAverage(grades[student]);
+		System.out.printf("%9.2f\n", average);
+	}	
+}
+
+public double getAverage(int[] setOfGrades)
+{
+	int total = 0;
+
+	for(int grade: setOfGrades)
+		total += grade;
+
+	return (double) total/setOfGrades.length;
+}
