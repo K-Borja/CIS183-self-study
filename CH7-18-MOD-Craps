@@ -1,0 +1,176 @@
+/*7.18(Game of Craps)
+Write an application that runs 1,000,000 games of craps (Fig. 6.8) and
+answers the following questions:
+a) How many games are won on the first roll, second roll, ..., twentieth
+	roll and after the twentieth roll?
+	= 9
+b) How many games are lost on the first roll, second roll, ..., twentieth
+	roll and after the twentieth roll?
+	= 11
+c)  What are the chances of winning at craps? [Note: You should discover
+	that craps is one of the fairest casino games. What do you suppose this means?]
+	= 45%, 50% for 1m games played
+d) What is the average length of a game of craps?
+	= 3.40ish
+e)  Do the chances of winning improve with the length of the game?
+	= yes
+*/
+
+import java.util.Random;
+import java.util.Scanner;
+public class Ch7Craps
+{
+	//Random object
+	private static final Random randomNumbers = new Random();
+	
+	//enumeration representing game status
+	private enum Status {CONTINUE, WON, LOST};
+	
+	//constants representing common dice rolls
+	private static final int SNAKE_EYES =2;
+	private static final int TREY =3;
+	private static final int SEVEN =7;
+	private static final int YO_LEVEN =11;
+	private static final int BOX_CARS =12;
+	private static Status gameStatus; //can contain CONTINUE, WON, or LOST
+	private static int timesRolled = 0;
+	
+	public static void main(String[] args)
+	{
+		//array that stores times won and lost
+		int[] statusFrequency = new int[2];
+		
+		//scanner object
+		Scanner input = new Scanner(System.in);
+
+		//first prompt
+		System.out.println("Enter zero to quit.")
+		System.out.print("How many times to play game? ");
+		int userCount = input.nextInt();
+		
+		//sentinel controlled loop
+		while(userCount !=0)
+		{
+			//user input determines number of games played
+			for(int count = 1; count <= userCount; count++)
+			{
+				game();
+				
+				//increment array element value accordingly
+				if(gameStatus == Status.WON)
+					++statusFrequency[1];
+				if(gameStatus == Status.LOST)
+					++statusFrequency[0];
+			}//end for
+			
+			//display number of games played
+			System.out.printf("Games played: %d\n", userCount);
+			
+			//display times won
+			int timesWon = statusFrequency[1];		
+			System.out.printf("Times won: %d\n", timesWon);
+			
+			//display times lost
+			int timesLost = statusFrequency[0];
+			System.out.printf("Times lost: %d\n", timesLost);
+			
+			//display chances of winning in percentage
+			double chancesWin = (double)timesWon/userCount*100.00;
+			System.out.printf("Chances of winning: %.2f%%\n", chancesWin);
+			
+			//display average times rolled the dices for a set game
+			double averageRoll = (double)timesRolled /userCount;
+			System.out.printf("Average Length: %.2f\n", averageRoll);
+		
+			//reset the counters for the next prompt
+			statusFrequency[0] = 0;
+			statusFrequency[1] = 0;
+			resetRoll();
+			
+			//prompt again
+			System.out.println("======================================");
+			System.out.println("Enter zero to quit.")
+			System.out.print("How many times to play game? ");
+			userCount = input.nextInt();
+		}
+	}//end main
+	
+	//increment timesRolled instance variable
+	public static int rollCount()
+	{
+		return timesRolled++;
+	}//end rollCount()
+	
+	//reset timesRolled for a new number of times played
+	public static int resetRoll()
+	{
+		timesRolled = 0;
+		return timesRolled;
+	}//end resetRoll()
+	
+	//play one round of Craps
+	public static Status game()
+	{
+		int myPoint =0;		//point if neither win or lost on first roll
+		int sumOfDice = rollDice();	//first roll of dice
+				
+		//determine game status and point based on first roll
+		switch(sumOfDice)
+		{
+			case SEVEN:
+			case YO_LEVEN:
+				gameStatus = Status.WON;
+				break;
+			case SNAKE_EYES:
+			case TREY:
+			case BOX_CARS:
+				gameStatus = Status.LOST;
+				break;
+			//neither win or lose. remember point
+			default:
+				gameStatus = Status.CONTINUE;
+				myPoint = sumOfDice;
+				//System.out.printf("Point is %d\n", myPoint);
+				break;
+		}//end switch
+		
+		//while game is not complete
+		while(gameStatus == Status.CONTINUE)
+		{
+			sumOfDice = rollDice(); //roll dice again
+			
+			//determine game status based on the 2 dice rolls
+			if(sumOfDice == myPoint)
+				gameStatus = Status.WON;
+			else
+				if(sumOfDice == SEVEN)
+					gameStatus = Status.LOST;
+		}//end while
+		
+		//display won or lost message
+		/*if(gameStatus == Status.WON)
+			System.out.println("Player wins.");
+		else
+			System.out.println("Player loses.");*/
+		
+		return gameStatus;
+	}//end game()
+	
+	//random dice rolls
+	public static int rollDice()
+	{
+		//roll 2 dices
+		int die1 = 1 + randomNumbers.nextInt(6);
+		int die2 = 1 + randomNumbers.nextInt(6);
+		
+		//sum of 2 dices
+		int sum = die1 + die2;
+		
+		/*//display results
+		System.out.printf("Player rolled %d + %d = %d\n", die1, die2, sum);*/
+		rollCount();
+		
+		return sum;
+	}//end rollDice
+	
+}//end class
