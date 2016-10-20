@@ -8,12 +8,12 @@ public class Interest
 {
 	public static void main(String[] args)
 	{
-		int amount;				//amount of deposit at end of each year
-		int principal = 100000; //initial amount before interest
+		int amount;			//amount of deposit at end of each year
+		int principal = 100000; 	//initial amount before interest
 		int rate = 5;			//interest rate
-		int pennyRatio = 100; 	//penny to dollar ratio
-		int dollar;				//dollars placeholder
-		int cent;				//cents placeholder
+		int pennyRatio = 100; 		//penny to dollar ratio
+		int dollar;			//dollars placeholder
+		int cent;			//cents placeholder
 		
 		//display headers
 		System.out.printf("%s%20s\n", "Year", "Amount on deposit");
