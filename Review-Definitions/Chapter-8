@@ -1,0 +1,88 @@
+8.1 Fill in the blanks in each of the following statements:
+	a)  When compiling a class in a package, the javac command-line
+	option _______  specifies where to store the package and causes the
+	compiler to create the package’s directories if they do not exist.
+	= -d 
+	
+	b)String class static method _______ is similar to method 
+	System.out.printf, but returns a formatted String rather than
+	displaying a String in a command window.
+	= format , or String.format
+	
+	c)  If a method contains a local variable with the same name as
+	one of its class’s fields, the local variable _______ the field in
+	that method’s scope.
+	= shadows
+	
+	d) The _______ method is called by the garbage collect or just
+	before it reclaims an object’s memory.
+	= finalize
+	
+	e)  A(n) _______ declaration specifies one class to import.
+	=single type import
+	
+	f)  If a class declares constructors, the compiler will not
+	create a(n) _______.
+	= default constructor
+	
+	g) An object’s _______ method is called implicitly when an object
+	appears in code where a String is needed.
+	= toString
+
+	h) Get methods are commonly called _______ or _______.
+	= accessor methods
+	= query methods
+	
+	i)  A(n) _______ method tests whether a condition is true or false.
+	= predicate
+	
+	j)  For every enum, the compiler generates a static method called
+	_______ that returns an array of the enum’s constants in the order
+	in which they were declared.
+	= values
+	
+	k) Composition is sometimes referred to as a(n) _______ relationship.
+	= has-a
+	
+	l)  A(n) _______ declaration contains a comma-separated list of constants.
+	= enum
+	
+	m) A(n) _______ variable represents classwide information that’s
+	shared by all the objects of the class.
+	= static
+	
+	n) A(n) _______ declaration imports one static member.
+	= single static import
+	
+	o) The _______ states that code should be granted only the amount of
+	privilege and access that it needs to accomplish its designated task.
+	= the principle of least privilege
+	
+	p) Keyword _______ specifies that a variable is not modifiable.
+	= final
+	
+	q) There can be only one _______ in a Java source-code file, and it
+	must precede all other declarations and statements in the file.
+	= package declaration
+	
+	r)  A(n) _______ declaration imports only the classes that the program
+	uses from a particular package.
+	= type-import-on-demand
+	
+	s)  The compiler uses a(n) _______ to locate the classes it needs in the classpath.
+	= class loader
+	
+	t)  The classpath for the compiler and JVM can be specified with the _______
+	option to the javac or java command, or by setting the _______ environment variable.
+	= -classpath
+	= CLASSPATH
+	
+	u) Set methods are commonly called _______ because they typically change a value.
+	= mutator methods
+	
+	v) A(n) _______ imports allstatic members of a class.
+	= static import on demand
+	
+	w) The public methods of a class are also known as the class’s _______ or_______.
+	= public services
+	= public interface
